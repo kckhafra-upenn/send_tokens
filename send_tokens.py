@@ -29,13 +29,13 @@ def send_tokens( receiver_pk, tx_amount ):
     last_valid_round = params.last
 
     #Your code here
-    print(tx_amount)
     unsigned_txn = transaction.PaymentTxn(address, tx_fee, first_valid_round, last_valid_round, gen_hash, receiver_pk, tx_amount, close_remainder_to=None, note=None, gen=None, flat_fee=False, lease=None, rekey_to=None)
     # sign transaction
     signed_txn = unsigned_txn.sign(private_key)
     # send transaction
     txid = acl.send_transaction(signed_txn)
     # print("Send transaction with txID: {}".format(txid))
+    sender_pk=txid.address
     
     return sender_pk, txid
 
